@@ -1,0 +1,1119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Landscape Index</title>
+<style type="text/css">
+.Patch_Index {
+	float: left;
+	height: 170px;
+	width: 325px;
+	vertical-align: middle;
+	text-align: left;
+	clear: none;
+	background-position: left top;
+	border: thin dashed #999;
+}
+.InputData_divCSS {
+	height: auto;
+	width: auto;
+	float: left;
+}
+.statistics_center_css {
+	height: auto;
+	width: 800px;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+}
+.Index_div {
+	height: auto;
+	width: auto;
+	position: relative;
+	float: none;
+	clear: none;
+	border: thin none #333;
+	margin: auto;
+	padding: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.container {
+	height: 200px;
+	background-color: #F99;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.center_css {
+	height: auto;
+	width: 800px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+}
+.Patch_Index1 {	float: left;
+	height: 170px;
+	width: 150px;
+	vertical-align: middle;
+	text-align: left;
+	clear: none;
+	background-position: left top;
+	justify-content: center;
+	align-items: center; 
+	border: thin dashed #999;
+}
+.Index_div1 {	height: auto;
+	width: auto;
+	position: relative;
+	float: none;
+	clear: none;
+	border: thin none #333;
+	margin: auto;
+	padding: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.statistics_div {
+	float: left;
+	height: auto;
+	width: 800px;
+	border: thin dashed #666;
+}
+.Patch_Index11 {float: left;
+	height: 170px;
+	width: 150px;
+	vertical-align: middle;
+	text-align: left;
+	clear: none;
+	background-position: left top;
+	justify-content: center;
+	align-items: center; 
+	border: thin dashed #999;
+}
+.Patch_Index12 {float: left;
+	height: 170px;
+	width: 150px;
+	vertical-align: middle;
+	text-align: left;
+	clear: none;
+	background-position: left top;
+	justify-content: center;
+	align-items: center; 
+	border: thin dashed #999;
+}
+.parameter_labeldiv {
+	width: auto;
+	float: left;
+}
+</style>
+</head>
+
+<body>
+<div>
+  <p align="center">计算景观指数</p>
+  <div class="Index_div">
+    <div class="center_css">
+      <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
+        <p>
+          <label for="VectorDataPath2"></label>
+          <label for="VectorDataButton"></label>
+        </p>
+        <div class="InputData_divCSS">
+          <p>
+            <input type="file" name="VectorDataButton" id="VectorDataButton" />
+          </p>
+          <p align="center">参数设置：</p>
+          <div class="parameter_labeldiv">
+            <p>边缘深度：</p>
+            <p>边缘对比度：</p>
+            <p>CONNECT距离：</p>
+            <p>相似度：</p>
+          </div>
+          <div class="parameter_labeldiv">
+          <p><input type="number" id="EdgeDepth" name="num_patches"></p>
+          <p>
+            <label for="EdgeContrast"></label>
+            <input type="file" name="EdgeContrast" id="EdgeContrast" />
+            
+          </p>
+          <p><input type="number" id="ConnectDistance" name="num_patches"> </p>
+          <p>
+            <label for="Similarity"></label>
+            <input type="file" name="Similarity" id="Similarity" />
+          </p>
+          </div>
+        </div>
+        <div class="parameter_labeldiv"><h2 align="justify">&nbsp;</h2>
+          <p align="justify">&nbsp;</p>
+          <p align="justify">&nbsp;</p>
+          <button class="button" onclick="calculatePatchDensity()"><h2>计算</h2></button>
+          <button class="button" onclick="calculatePatchDensity()"><h2>查看结果</h2></button>
+          <button class="button" onclick="calculatePatchDensity()"><h2>导出结果</h2></button>
+        </div> 
+      </form>
+    </div>
+  </div>
+</div>
+<div class="Patch Index">
+  <div align="center">Patch Level Index</div>
+</div>
+<div class="Index_div">
+  <div class="center_css">
+    <div class="Patch_Index1">
+      <label> Area_Edge<br />
+        <input type="checkbox" name="Patch Index" value="复选框" id="Patch_AREA" />
+        AREA</label>
+      <br />
+      <label>
+        <input type="checkbox" name="Patch Index" value="复选框" id="Patch_PERIM" />
+        PERIM</label>
+      <br />
+      <label>
+        <input type="checkbox" name="Patch Index" value="复选框" id="Patch_GYRATE" />
+        GYRATE </label>
+    </div>
+    <div class="Patch_Index1">
+      <label> Shape<br />
+        <input type="checkbox" name="Patch Index" value="复选框" id="Patch_PARA" />
+        PARA</label>
+      <br />
+      <label>
+        <input type="checkbox" name="Patch Index" value="复选框" id="Patch_SHAPE" />
+        SHAPE</label>
+      <br />
+      <label>
+        <input type="checkbox" name="Patch Index" value="复选框" id="Patch_FRAC" />
+        FRAC </label>
+      <br />
+      <label>
+        <input type="checkbox" name="Patch Index" value="复选框" id="Patch_CIRCLE" />
+        CIRCLE </label>
+      <br />
+      <label>
+        <input type="checkbox" name="Patch Index" value="复选框" id="Patch_CONTIG" />
+        CONTIG </label>
+    </div>
+    <div class="Patch_Index1">
+      <label>Core Area<br />
+        <input type="checkbox" name="PatchIndex_5" value="复选框" id="Patch_CORE" />
+        CORE </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_5" value="复选框" id="Patch_NCORE" />
+        NCORE </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_5" value="复选框" id="Patch_CAI" />
+        CAI<br />
+      </label>
+    </div>
+    <div class="Patch_Index1">
+      <label>Contrast<br />
+        <input type="checkbox" name="PatchIndex_6" value="复选框" id="Patch_ECON" />
+        ECON </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_6" value="复选框" id="Patch_ENN" />
+        ENN </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_6" value="复选框" id="Patch_PROX" />
+        PROX </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_6" value="复选框" id="Patch_SIMI" />
+        SIMI<br />
+      </label>
+    </div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+  </div>
+</div>
+<p>&nbsp;</p>
+<div class="Patch Index">
+  <div align="center">Class Level Index</div>
+</div>
+<div class="Index_div">
+  <div class="center_css">
+    <div class="Patch_Index1">
+      <label> Area_Edge<br />
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_CA/TA" />
+        CA/TA
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_PLAND" />
+        PLAND
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_LPI" />
+        LPI
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_TE" />
+        TE
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_ED" />
+        ED
+      </label>
+    </div>
+    <div class="Patch_Index1">
+      <label>Core Area<br />
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_TCA" />
+      </label>
+      TCA<br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_CPLAND" />
+        CPLAND
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_NDCA" />
+        NDCA
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_DCAD" />
+        DCAD
+        <br />
+      </label>
+    </div>
+    <div class="Patch_Index1">
+      <label>Contrast<br />
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_CWED" />
+        CWED
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_TECI" />
+        TECI
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_PAFRAC" />
+        PAFRAC
+        <br />
+      </label>
+    </div>
+    <div class="Patch_Index">
+      <label>Aggregation<br />
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_CONNECT" />
+        CONNECT
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_SPLIT" />
+        SPLIT
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_NP" />
+        NP
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_MESH" />
+        MESH
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_PLADJ" />
+        PLADJ
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_PD" />
+        PD
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_IJI" />
+        IJI
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_AI" />
+        AI
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_CLUMPU" />
+        CLUMPY
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_DIVISION" />
+        DIVISION
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_LSI" />
+        LSI
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_CONNECT" />
+        CONNECT
+        <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_COHESION" />
+        COHESION
+      </label>
+    </div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p></div>
+</div>
+<div>
+  <div align="center">Class Statistics Index</div>
+</div>
+<div class="Index_div">
+  <div class="statistics_center_css">
+    <div class="statistics_div">
+      <p>Area_Edge:<br />
+        <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_AREA_MN" />
+        AREA_MN
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_AREA_AM" />
+          AREA_AM
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_AREA_MD" />
+          AREA_MD
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_AREA_RA" />
+          AREA_RA</label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_AREA_SD" />
+          AREA_SD
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_AREA_CV" />
+          AREA_CV
+        </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_GYRATE_MN" />
+        GYRATE_MN
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_GYRATE_AM" />
+          GYRATE_AM
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_GYRATE_MD" />
+          GYRATE_MD
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_GYRATE_RA" />
+          GYRATE_RA</label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_GYRATE_SD" />
+          GYRATE_SD
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Class_GYRATE_CV" />
+          GYRATE_CV
+        </label>
+      <br />
+    </p>
+    </div>
+    <div class="statistics_div">
+      <p align="left">Shape:<br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT" value="复选框" id="Class_FRAC_MN" />
+          PARA_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_FRAC_AM" />
+          PARA_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_FRAC_MD" />
+          PARA_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_FRAC_RA" />
+          PARA_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_FRAC_SD" />
+          PARA_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_FRAC_CV" />
+          PARA_CV </label>
+        <br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT" value="复选框" id="Class_SHAPE_MN" />
+          SHAPE_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_SHAPE_AM" />
+          SHAPE_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_SHAPE_MD" />
+          SHAPE_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_SHAPE_RA" />
+          SHAPE_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_SHAPE_SD" />
+          SHAPE_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_SHAPE_CV" />
+          SHAPE_CV </label>
+        <br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT" value="复选框" id="Class_FRAC_MN" />
+          FRAC_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_FRAC_AM" />
+          FRAC_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_FRAC_MD" />
+          FRAC_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_FRAC_RA" />
+          FRAC_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_FRAC_SD" />
+          FRAC_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_FRAC_CV" />
+          FRAC_CV </label>
+        <br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT" value="复选框" id="Class_CIRCLE_MN" />
+          CIRCLE_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_CIRCLE_AM" />
+          CIRCLE_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_CIRCLE_MD" />
+          CIRCLE_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_CIRCLE_RA" />
+          CIRCLE_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_CIRCLE_SD" />
+          CIRCLE_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_CIRCLE_CV" />
+          CIRCLE_CV </label>
+        <br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT" value="复选框" id="Class_CONTIG_MN" />
+          CONTIG_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_CONTIG_AM" />
+          CONTIG_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_CONTIG_MD" />
+          CONTIG_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_CONTIG_RA" />
+          CONTIG_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_CONTIG_SD" />
+          CONTIG_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Class_CONTIG_CV" />
+          CONTIG_CV </label>
+      <br />
+      </p>
+    </div>
+    <div class="statistics_div">
+      <p>Core area:<br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT3" value="复选框" id="Class_CORE_MN" />
+          CORE_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_CORE_AM" />
+          CORE_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_CORE_MD" />
+          CORE_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_CORE_RA" />
+          CORE_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_CORE_SD" />
+          CORE_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_CORE_CV" />
+          CORE_CV </label>
+        <br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT3" value="复选框" id="Class_DCORE_MN" />
+          DCORE_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_DCORE_AM" />
+          DCORE_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_DCORE_MD" />
+          DCORE_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_DCORE_RA" />
+          DCORE_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_DCORE_SD" />
+          DCORE_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_DCORE_CV" />
+          DCORE_CV </label>
+          <br/>
+        <label>
+          <input type="checkbox" name="Class_CONNECT3" value="复选框" id="Class_CAI_MN" />
+          CAI_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_CAI_AM" />
+          CAI_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_CAI_MD" />
+          CAI_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_CAI_RA" />
+          CAI_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_CAI_SD" />
+          CAI_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Class_CAI_CV" />
+          CAI_CV </label>
+      </p>
+    </div>
+    <div class="statistics_div">
+      <p>Contrast:<br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT2" value="复选框" id="Class_ECON_MN" />
+          ECON_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT2" value="复选框" id="Class_ECON_AM" />
+          ECON_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT2" value="复选框" id="Class_ECON_MD" />
+          ECON_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT2" value="复选框" id="Class_ECON_RA" />
+          ECON_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT2" value="复选框" id="Class_ECON_SD" />
+          ECON_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT2" value="复选框" id="Class_ECON_CV" />
+          ECON_CV </label>
+      </p></div>
+    <div class="statistics_div">
+      <p>Aggregation:<br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT4" value="复选框" id="Class_ENN_MN" />
+          ENN_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_ENN_AM" />
+          ENN_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_ENN_MD" />
+          ENN_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_ENN_RA" />
+          ENN_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_ENN_SD" />
+          ENN_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_ENN_CV" />
+          ENN_CV </label>
+        <br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT4" value="复选框" id="Class_PROX_MN" />
+          PROX_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_PROX_AM" />
+          PROX_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_PROX_MD" />
+          PROX_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_PROX_RA" />
+          PROX_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_PROX_SD" />
+          PROX_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_PROX_CV" />
+          PROX_CV </label>
+        <br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT4" value="复选框" id="Class_SIMI_MN" />
+          SIMI_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_SIMI_AM" />
+          SIMI_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_SIMI_MD" />
+          SIMI_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_SIMI_RA" />
+          SIMI_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_SIMI_SD" />
+          SIMI_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Class_SIMI_CV" />
+          SIMI_CV </label>
+        <br />
+      </p>
+    </div>
+  </div>
+</div>
+<p>&nbsp;</p>
+<div class="Patch Index">
+  <div align="center">Landscape Level Index</div>
+</div>
+<div class="Index_div">
+  <div class="center_css">
+    <div class="Patch_Index1">
+      <label> Area_Edge<br />
+        <input type="checkbox" name="PatchIndex_8" value="复选框" id="Land_CA/TA" />
+        CA/TA
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_8" value="复选框" id="Land_LPI" />
+        LPI
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_8" value="复选框" id="Land_TE" />
+        TE
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_8" value="复选框" id="Land_ED" />
+        ED
+      </label>
+    </div>
+    <div class="Patch_Index1">
+      <label> Shape<br />
+        <input type="checkbox" name="PatchIndex_8" value="复选框" id="Land_PAFRAC" />
+        PAFRAC
+      </label>
+    </div>
+    <div class="Patch_Index1">
+      <label>Core Area<br />
+        <input type="checkbox" name="PatchIndex_8" value="复选框" id="Land_TCA" />
+        TCA
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_8" value="复选框" id="Land_NDCA" />
+        NDCA
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_8" value="复选框" id="Land_DCAD" />
+        DCAD
+        <br />
+      </label>
+    </div>
+    <div class="Patch_Index1">
+      <label>Contrast<br />
+        <input type="checkbox" name="PatchIndex_8" value="复选框" id="Land_CWED" />
+        CWED
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_8" value="复选框" id="Land_TECI" />
+        TECI
+      </label>
+    </div>
+    <div class="Patch_Index">
+      <label>
+      Aggregation</label><br />
+      <input type="checkbox" name="Class_CONNECT5" value="复选框" id="Land_CONNECT" />
+      CONNECT
+  <label>
+    <input type="checkbox" name="Class_SPLIT5" value="复选框" id="Land_SPLIT" />
+    SPLIT </label>
+  <br />
+  <label>
+  <input type="checkbox" name="Class_NP" value="复选框" id="Land_NP" />
+      NP</label>
+  <label>
+  <input type="checkbox" name="Class_MESH" value="复选框" id="Land_MESH" />
+      MESH</label>
+  <label>
+    <input type="checkbox" name="Class_PLADJ" value="复选框" id="Land_PLADJ" />
+    PLADJ </label>
+  <br />
+  <label>
+  <input type="checkbox" name="Class_PD" value="复选框" id="Land_PD" />
+      PD</label>
+  <label>
+  <input type="checkbox" name="Class_IJI" value="复选框" id="Land_IJI" />
+      IJI</label>
+  <label>
+  <input type="checkbox" name="Class_AI" value="复选框" id="Land_AI" />
+      AI</label>
+  <label>
+    <input type="checkbox" name="Class_CLUMPU" value="复选框" id="Land_COHESION" />
+    COHESION</label>
+  </label>
+  <br />
+  <label>
+  <input type="checkbox" name="Class_DIVISION" value="复选框" id="Land_DIVISION" />
+      DIVISION</label>
+  <label>
+  <input type="checkbox" name="Class_LSI" value="复选框" id="Land_LSI" />
+      LSI</label>
+  <label>
+  <input type="checkbox" name="Class_CONNECT5" value="复选框" id="Land_CONTAG" />
+      CONTAG </label>
+    </div>
+    <div class="Patch_Index">
+      <label>Diversity</label>
+      <br />
+      <input type="checkbox" name="Class_CONNECT6" value="复选框" id="Land_PR" />
+      PR</label>
+      <label>
+    <input type="checkbox" name="Class_SPLIT6" value="复选框" id="Land_MSIDI" />
+    MSIDI
+      </label>
+  <br />
+  <label>
+  <input type="checkbox" name="Class_NP2" value="复选框" id="Land_PRD" />
+  PRD</label>
+  <label>
+  <input type="checkbox" name="Class_MESH2" value="复选框" id="Land_SHEI" />
+  SHEI</label>
+  <br />
+  <label>
+  <input type="checkbox" name="Class_PD2" value="复选框" id="Land_PRD" />
+  RPR</label>
+  <label>
+  <input type="checkbox" name="Class_IJI2" value="复选框" id="Land_SIEI" />
+  SIEI</label>
+  <br />
+  <label>
+  <input type="checkbox" name="Class_DIVISION2" value="复选框" id="Land_SHDI" />
+  SHDI</label>
+  <label>
+  <input type="checkbox" name="Class_LSI2" value="复选框" id="Land_MSIEI" />
+  MSIEI</label><br />
+  <label>
+    <input type="checkbox" name="Class_COHESION2" value="复选框" id="Land_SIDI" />
+    SIDI</label>
+  </label>
+    </div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+  </div>
+</div>
+<div>
+  <div align="center">Landscape Statistics Index</div>
+</div>
+<div class="Index_div">
+  <div class="statistics_center_css">
+    <div class="statistics_div">
+      <p>Area_Edge:<br />
+        <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Land_AREA_MN" />
+        AREA_MN
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Land_AREA_AM" />
+          AREA_AM
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Land_AREA_MD" />
+          AREA_MD
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Land_AREA_RA" />
+          AREA_RA</label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Land_AREA_SD" />
+          AREA_SD
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Land_AREA_CV" />
+          AREA_CV
+        </label>
+      <br />
+      <label>
+        <input type="checkbox" name="PatchIndex_7" value="复选框" id="Land_GYRATE_MN" />
+        GYRATE_MN
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Land_GYRATE_AM" />
+          GYRATE_AM
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Land_GYRATE_MD" />
+          GYRATE_MD
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Land_GYRATE_RA" />
+          GYRATE_RA</label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Land_GYRATE_SD" />
+          GYRATE_SD
+        </label>
+        <label>
+          <input type="checkbox" name="PatchIndex_7" value="复选框" id="Land_GYRATE_CV" />
+          GYRATE_CV
+        </label>
+      <br />
+    </p>
+    </div>
+    <div class="statistics_div">
+      <p align="left">Shape:<br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT" value="复选框" id="Land_RARA_MN" />
+          PARA_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_RARA_AM" />
+          PARA_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_RARA_MD" />
+          PARA_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_RARA_RA" />
+          PARA_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_RARA_SD" />
+          PARA_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_RARA_CV" />
+          PARA_CV </label>
+        <br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT" value="复选框" id="Land_SHAPE_MN" />
+          SHAPE_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_SHAPE_AM" />
+          SHAPE_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_SHAPE_MD" />
+          SHAPE_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_SHAPE_RA" />
+          SHAPE_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_SHAPE_SD" />
+          SHAPE_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_SHAPE_CV" />
+          SHAPE_CV </label>
+        <br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT" value="复选框" id="Land_FRAC_MN" />
+          FRAC_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_FRAC_AM" />
+          FRAC_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_FRAC_MD" />
+          FRAC_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_FRAC_RA" />
+          FRAC_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_FRAC_SD" />
+          FRAC_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_FRAC_CV" />
+          FRAC_CV </label>
+        <br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT" value="复选框" id="Land_CIRCLE_MN" />
+          CIRCLE_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_CIRCLE_AM" />
+          CIRCLE_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_CIRCLE_MD" />
+          CIRCLE_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_CIRCLE_RA" />
+          CIRCLE_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_CIRCLE_SD" />
+          CIRCLE_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_CIRCLE_CV" />
+          CIRCLE_CV </label>
+        <br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT" value="复选框" id="Land_CONTIG_MN" />
+          CONTIG_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_CIRCLE_AM" />
+          CONTIG_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_CIRCLE_MD" />
+          CONTIG_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_CIRCLE_RA" />
+          CONTIG_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_CIRCLE_SD" />
+          CONTIG_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT" value="复选框" id="Land_CIRCLE_CV" />
+          CONTIG_CV </label>
+      <br />
+      </p>
+    </div>
+    <div class="statistics_div">
+      <p>Core area:<br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT3" value="复选框" id="Land_CORE_MN" />
+          CORE_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_CORE_AM" />
+          CORE_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_CORE_MD" />
+          CORE_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_CORE_RA" />
+          CORE_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_CORE_SD" />
+          CORE_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_CORE_CV" />
+          CORE_CV </label>
+        <br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT3" value="复选框" id="Land_DCORE_MN" />
+          DCORE_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_DCORE_AM" />
+          DCORE_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_DCORE_MD" />
+          DCORE_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_DCORE_RA" />
+          DCORE_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_DCORE_SD" />
+          DCORE_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_DCORE_CV" />
+          DCORE_CV </label>
+          <br/>
+        <label>
+          <input type="checkbox" name="Class_CONNECT3" value="复选框" id="Land_CAI_MN" />
+          CAI_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_CAI_AM" />
+          CAI_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_CAI_MD" />
+          CAI_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_CAI_RA" />
+          CAI_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_CAI_SD" />
+          CAI_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT3" value="复选框" id="Land_CAI_CV" />
+          CAI_CV </label>
+      </p>
+    </div>
+    <div class="statistics_div">
+      <p>Contrast:<br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT2" value="复选框" id="Land_ECON_MN" />
+          ECON_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT2" value="复选框" id="Land_ECON_AM" />
+          ECON_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT2" value="复选框" id="Land_ECON_MD" />
+          ECON_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT2" value="复选框" id="Land_ECON_RA" />
+          ECON_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT2" value="复选框" id="Land_ECON_SD" />
+          ECON_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT2" value="复选框" id="Land_ECON_CV" />
+          ECON_CV </label>
+      </p></div>
+    <div class="statistics_div">
+      <p>Aggregation:<br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT4" value="复选框" id="Land_ENN_MN" />
+          ENN_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_ENN_AM" />
+          ENN_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_ENN_MD" />
+          ENN_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_ENN_RA" />
+          ENN_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_ENN_SD" />
+          ENN_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_ENN_CV" />
+          ENN_CV </label>
+        <br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT4" value="复选框" id="Land_PROX_MN" />
+          PROX_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_PROX_AM" />
+          PROX_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_PROX_MD" />
+          PROX_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_PROX_RA" />
+          PROX_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_PROX_SD" />
+          PROX_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_PROX_CV" />
+          PROX_CV </label>
+        <br />
+        <label>
+          <input type="checkbox" name="Class_CONNECT4" value="复选框" id="Land_SIMI_MN" />
+          SIMI_MN </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_SIMI_AM" />
+          SIMI_AM </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_SIMI_MD" />
+          SIMI_MD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_SIMI_RA" />
+          SIMI_RA</label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_SIMI_SD" />
+          SIMI_SD </label>
+        <label>
+          <input type="checkbox" name="Class_SPLIT4" value="复选框" id="Land_SIMI_CV" />
+          SIMI_CV </label>
+        <br />
+      </p>
+    </div>
+  </div>
+</div>
+<p>&nbsp;</p>
+</body>
+</html>
